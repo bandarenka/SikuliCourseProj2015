@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testdata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <actions>
+  	<action type="execute" inputText="C:\\Program Files (x86)\\Opera\\launcher.exe" />
+    <action type="click" target="Capture0.PNG"  targetOffset="0, 0" />
+    <action type="type" target="Capture1.PNG" inputText="Aria" targetOffset="1, 1" timeout="1" targetSimilarity="0.84" />
+    <action type="click" target="Capture2.PNG"  targetOffset="0, 0" targetSimilarity="0.84" />
+    
+  <loop type="for" counterNumber="3">
+  	<action type="click" target="Capture3.PNG"  targetOffset="0, 0" />
+    <action type="click" target="Capture6.PNG"  targetOffset="0, 0" />
+  </loop>
+  <action type="click" target="Capture5.PNG"  targetOffset="0, 0" />
+  </actions>
+</testdata>
