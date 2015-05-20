@@ -18,6 +18,7 @@ import Entities.*;
 
 public class SikuliParser {
 
+	private  static String catalogPath;
 	public static Document openScript(String filename) throws DocumentException {
 		File inputFile = new File(filename);
 		SAXReader reader = new SAXReader();
@@ -27,6 +28,7 @@ public class SikuliParser {
 
 	public static Element getScriptContent(Document document) {
 		Element rootElement = document.getRootElement();
+		catalogPath = rootElement.attributeValue("CatalogPath");
 		List<Element> actions = rootElement.elements();
 		Element scriptContent = actions.get(0);
 
@@ -35,7 +37,7 @@ public class SikuliParser {
 
 	public static ActionUnit createAction(Element e) {
 		String type = getAttributeValue(e, "type");
-		String target = getAttributeValue(e, "target");
+		String target = catalogPath + "\\" + getAttributeValue(e, "target");
 		String targetOffset = getAttributeValue(e, "targetOffset");
 		String inputText = getAttributeValue(e, "inputText");
 		String targetSimilarity = getAttributeValue(e, "targetSimilarity");
@@ -51,13 +53,13 @@ public class SikuliParser {
 	public static Loop createLoop(Element e) {
 		String type = getAttributeValue(e, "type");
 		String countNumber = getAttributeValue(e, "counts");
-		String targetCondition = getAttributeValue(e, "condition");
+		String targetCondition = catalogPath + "\\" + getAttributeValue(e, "condition");
 
 		return new Loop(countNumber, type, targetCondition);
 	}
 
 	public static If createIf(Element e) {
-		String targetCondition = getAttributeValue(e, "condition");
+		String targetCondition = catalogPath + "\\" + getAttributeValue(e, "condition");
 
 		return new If(targetCondition);
 	}
